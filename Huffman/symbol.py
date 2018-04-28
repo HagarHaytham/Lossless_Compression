@@ -4,7 +4,7 @@ Created on Sun Apr 29 00:20:21 2018
 
 @author: hagar
 """
-
+#i think mafeesh stucts f python
 class Symbol:
     def __init__(self,val,frequency,probability):
         self.value=val
