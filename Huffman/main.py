@@ -19,12 +19,10 @@ encodedMessage='encoded.tsv'
 codeTable='codetable.tsv'
 decodedMessage='output.tsv'
 
-with open (inputFile,'rb') as f:
-    with open('test.tsv','wb')as wf:
-        for line in f:
-            wf.write(line)
-#        size=10
-#        fcontents=f.read()
-#        #while len(fcontents)>0:
-#        print(fcontents,end='')
-#        #fcontents=f.read(size)
+encoder1=encoder.Encoder(inputFile)
+#encoder1.GenerateSymbols()
+
+#huffman1=encoder1.Encode(codeTable,encodedMessage)
+
+#el decoder ya5od file el codetable w yconstuct huffman tree
+#w ba3d keda y decode el file
