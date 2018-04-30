@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 27 19:11:41 2018
+
 @author: hagar
 """
 
 #print("mn kalb el encoder no7adskom")
+
+import bitarray
 
 import huffman
 import symbol
@@ -25,8 +28,30 @@ class Encoder:
     def ReadFile(self):# don't forget self to be passed to any method in the class !! please XD
         #read file as binary file (in the form of bytes)
         with open (self.inputFile,'rb') as rf:
-            fcontents= rf.read()
-            return bytearray(fcontents) 
+            arr = bytearray(rf.read()) 
+            print("old " + str(arr))
+            
+            #convert letter into one byte
+            i=3
+            while(i<len(arr)):
+                 if(arr[i] & 0b10000000 == 0b0):
+                     i += 1
+                     continue
+                 
+                 temp = "1"
+                 temp += str(arr[i] & 0b1)
+                 for j in range (0,6): #check
+                     if((arr[i+1] & 0b100000>>j) == 0):
+                         temp += "0"
+                     else:
+                         temp += "1"
+                         
+                 arr[i] = int(temp,2) #convert into binary
+                 del arr[i+1]
+                 i += 1     
+                 
+            print("new " + str(arr))
+            return arr
     
     def GenerateSymbols(self):
         i=0
@@ -36,7 +61,7 @@ class Encoder:
             i=i+1
         
 
-#r=Encoder('DataSet_1.tsv')
+r=Encoder('t1.tsv')
 #print(len(r.message))
 #print(len(r.values))
 #print(r.symbols[5].probability)
