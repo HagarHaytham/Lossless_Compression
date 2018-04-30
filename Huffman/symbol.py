@@ -10,3 +10,13 @@ class Symbol:
         self.value=val #byte
         self.frequency=frequency #number of occuraces in the message
         self.probability=probability #frequency/size
+        
+        
+    #operator overloading of less than operator    
+    def __lt__(self, other):
+        return self.frequency<other.frequency
+    
+    #operator overloading for printing symbol
+    def __str__(self):
+        return "Value:" + str(self.value) +" Frequency:"+str(self.frequency)+ " Probability:"+str(self.probability)
+    
