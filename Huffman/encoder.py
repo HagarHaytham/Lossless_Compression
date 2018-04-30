@@ -4,8 +4,6 @@ Created on Fri Apr 27 19:11:41 2018
 @author: hagar
 """
 
-#print("mn kalb el encoder no7adskom")
-
 import huffman
 import symbol 
 
@@ -18,8 +16,9 @@ class Encoder:
         self.huffman=huffman.Huffman()
         #get unique vlaues in the message and put them in a list
         self.values=list(set(self.message))#list of unique bytes
-        self.symbols={}# list of symbols objects
+        self.symbols=[]# list of symbols objects  # {} for dict (map) and [] for list (array)
         self.GenerateSymbols()
+        
        
         
     def ReadFile(self):# don't forget self to be passed to any method in the class !! please XD
@@ -33,12 +32,12 @@ class Encoder:
         i=0
         while i<len(self.values):
             #make new symbol object and pass the value,frequency and Probability to it
-            self.symbols[i]=symbol.Symbol(self.values[i],self.message.count(self.values[i]),self.message.count(self.values[i])/len(self.message))
+            self.symbols.append(symbol.Symbol(self.values[i],self.message.count(self.values[i]),self.message.count(self.values[i])/len(self.message)))
             i=i+1
         
         
 
-r=Encoder('t1.tsv')
+#r=Encoder('t1.tsv')
 #print(len(r.message))
 #print(len(r.values))
 #print(r.symbols[5].probability)

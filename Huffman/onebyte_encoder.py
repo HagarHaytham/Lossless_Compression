@@ -5,9 +5,7 @@ Created on Fri Apr 27 19:11:41 2018
 @author: hagar
 """
 
-#print("mn kalb el encoder no7adskom")
-
-import bitarray
+#import bitarray
 
 import huffman
 import symbol
@@ -21,7 +19,7 @@ class Encoder:
         self.huffman=huffman.Huffman()
         #get unique vlaues in the message and put them in a list
         self.values=list(set(self.message))#list of unique bytes
-        self.symbols={}# list of symmbols objects
+        self.symbols=[]# list of symmbols objects  # {} for dict (map) and [] for list {array}
         self.GenerateSymbols()
        
         
@@ -57,7 +55,7 @@ class Encoder:
         i=0
         while i<len(self.values):
             #make new symbol object and pass the value,frequency and Probability to it
-            self.symbols[i]=symbol.Symbol(self.values[i],self.message.count(self.values[i]),self.message.count(self.values[i])/len(self.message))
+            self.symbols.append(symbol.Symbol(self.values[i],self.message.count(self.values[i]),self.message.count(self.values[i])/len(self.message)))
             i=i+1
         
 
