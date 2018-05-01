@@ -19,7 +19,7 @@ class Encoder:
         self.huffman=huffman.Huffman()
         #get unique vlaues in the message and put them in a list
         self.values=list(set(self.message))#list of unique bytes
-        self.symbols=[]# list of symmbols objects  # {} for dict (map) and [] for list {array}
+        self.symbols=[]# list of symmbol objects  # {} for dict (map) and [] for list {array}
         self.GenerateSymbols()
        
         
@@ -59,9 +59,9 @@ class Encoder:
             i=i+1
         
 
-r=Encoder('t1.tsv')
-#print(len(r.message))
-#print(len(r.values))
+r=Encoder('Dataset_1.tsv')
+print(len(r.message))
+print(len(r.values))
 #print(r.symbols[5].probability)
 
 

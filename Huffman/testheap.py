@@ -19,13 +19,18 @@ import encoder
 r=encoder.Encoder('t1.tsv')
 # initializing list
 #li = [5, 7, 9, 1, 3]
+li=r.symbols
  
 # using heapify to convert list into heap
-heapq.heapify(r.symbols)
+heapq.heapify(li)
  
 # printing created heap
 print ("The created heap is : ",end="")
-print (list(r.symbols))
+print (list(li))
+for i in li:
+    print(i)
+#print(li[0])
+print(len(li))
  
 # using heappush() to push elements into heap
 # pushes 4

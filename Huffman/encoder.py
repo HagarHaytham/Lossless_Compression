@@ -19,7 +19,7 @@ class Encoder:
         self.symbols=[]# list of symbols objects  # {} for dict (map) and [] for list (array)
         self.GenerateSymbols()
         
-       
+        
         
     def ReadFile(self):# don't forget self to be passed to any method in the class !! please XD
         #read file as binary file (in the form of bytes)
@@ -37,10 +37,10 @@ class Encoder:
         
         
 
-#r=Encoder('t1.tsv')
+#r=Encoder('Dataset_1.tsv')
 #print(len(r.message))
 #print(len(r.values))
-#print(r.symbols[5].probability)
+#print(r.symbols[5])
 
 #arr=b"abc"
 #for value in arr:
