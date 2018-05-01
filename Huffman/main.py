@@ -26,17 +26,6 @@ encoder1.Encode(codeTable,encodedMessage)
 
 #Huffman1.printCodeTable(codeTable)
 
-#    
-#		sender.ReadMessage(inputMessageFile);
-#		sender.CalculateProbabilities();
-#		float H = sender.CalculateEntropy();
-#
-#		// Encoding
-#		huffman = sender.Encode(encodedMessageFile);
-#		huffman->printCodeTable(codeTableFile);
-#		float L = huffman->CalcAvgCWLength();
-		
-
 #huffman1=encoder1.Encode(codeTable,encodedMessage)
 
 #el decoder ya5od file el codetable w yconstuct huffman tree
