@@ -15,11 +15,11 @@ import encoder
 
 
 
-inputFile='DataSet_1.tsv'
-inputFile1='t2.tsv'
-encodedMessage='encoded.tsv'
-codeTable='codetable.tsv'
-decodedMessage='output.tsv'
+inputFile='files//DataSet_1.tsv'
+inputFile1='files//t2.tsv'
+encodedMessage='files//encoded.tsv'
+codeTable='files//codetable.tsv'
+decodedMessage='files//output.tsv'
 
 encoder1=encoder.Encoder(inputFile1)
 encoder1.Encode(codeTable,encodedMessage)
