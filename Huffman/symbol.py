@@ -10,6 +10,8 @@ class Symbol:
         self.value=val #byte
         self.frequency=frequency #number of occuraces in the message
         self.probability=probability #frequency/size
+        self.left=self.right=None#dah el null , mafeesh pointers ,let's just try
+        #should i put left and right here ,, or implement a new class called Node ????
         
     #operator overloading of less than operator    
     def __lt__(self, other):

@@ -9,13 +9,9 @@ import heapq
 
 import symbol as s
 
-
-
-ar=s.Symbol('a',5,0.5)
-arr=[ar]
-print(arr[0].value)
-
 import encoder
+
+
 r=encoder.Encoder('t1.tsv')
 # initializing list
 #li = [5, 7, 9, 1, 3]

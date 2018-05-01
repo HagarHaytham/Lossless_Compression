@@ -6,8 +6,9 @@ Created on Fri Apr 27 19:12:54 2018
 """
 
 import encoder
-import huffman
-import decoder
+#import huffman
+#import decoder
+
 # from encoder import encoder as en
 #import sys
 #print (sys.path)
@@ -15,12 +16,26 @@ import decoder
 
 
 inputFile='DataSet_1.tsv'
+inputFile1='t2.tsv'
 encodedMessage='encoded.tsv'
 codeTable='codetable.tsv'
 decodedMessage='output.tsv'
 
-encoder1=encoder.Encoder(inputFile)
-#encoder1.GenerateSymbols()
+encoder1=encoder.Encoder(inputFile1)
+encoder1.Encode(codeTable,encodedMessage)
+
+#Huffman1.printCodeTable(codeTable)
+
+#    
+#		sender.ReadMessage(inputMessageFile);
+#		sender.CalculateProbabilities();
+#		float H = sender.CalculateEntropy();
+#
+#		// Encoding
+#		huffman = sender.Encode(encodedMessageFile);
+#		huffman->printCodeTable(codeTableFile);
+#		float L = huffman->CalcAvgCWLength();
+		
 
 #huffman1=encoder1.Encode(codeTable,encodedMessage)
 
