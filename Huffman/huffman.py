@@ -21,7 +21,7 @@ class Huffman:
     def __init__(self):
         print('hufmman constructor')
         self.map={}
-        pass
+        #pass
     
     
     def HuffmanCodes(self,arr):
@@ -34,7 +34,7 @@ class Huffman:
             r=heapq.heappop(self.symbarr)
             #construct a new symbol with frequency = to the summation of the two symbols
             #value is 'a' dummy valuue just to know that it is a constructed symbol
-            node=symbol.Symbol('a',l.frequency+r.frequency,l.probability+r.probability)
+            node=symbol.Symbol('a',l.frequency+r.frequency,l.probability+r.probability)# cheeeeeck 
             #keep the two symbols in the left and the right of the new node
             node.left=l 
             node.right=r
@@ -56,9 +56,18 @@ class Huffman:
                 
     def EncodeMessage(self,message,encodedMessage):
         print('huffman encodemessage')
-        with open (encodedMessage,'w') as wf:
+        with open (encodedMessage,'wb') as wf:
+            enc=""
             for i in message:
-                wf.write(self.map[i])
+                #wf.write(self.map[i])
+                enc+= self.map[i]
+            print(len(enc))
+            while (len(enc) % 8 != 0):
+                enc += "0"
+            print(len(enc))
+            bytesenc =  int(enc,2).to_bytes((len(enc)//8),byteorder='big')
+            #bytesenc= map(ord,enc)
+            wf.write(bytesenc)
             
     
             

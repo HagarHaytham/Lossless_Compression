@@ -15,13 +15,13 @@ import encoder
 
 
 
-inputFile='files//DataSet_1.tsv'
-inputFile1='files//t2.tsv'
-encodedMessage='files//encoded.tsv'
-codeTable='files//codetable.tsv'
-decodedMessage='files//output.tsv'
+inputFile='files//DataSet_5.tsv'
+#inputFile1='files//t2.tsv'
+encodedMessage='encoding//encoded_5.tsv'
+codeTable='codetables//codetable_5.tsv'
+decodedMessage='decoding//output_1.tsv'
 
-encoder1=encoder.Encoder(inputFile1)
+encoder1=encoder.Encoder(inputFile)
 encoder1.Encode(codeTable,encodedMessage)
 
 #Huffman1.printCodeTable(codeTable)
