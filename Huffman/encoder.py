@@ -15,7 +15,7 @@ class Encoder:
         self.inputFile=inputfile
         print('Encoder constructor')
         self.message=self.ReadFile()
-        print(self.message)
+#        print(self.message)
         self.AddEOF()
         #print(self.message)
         #create new huffman object !
@@ -23,10 +23,10 @@ class Encoder:
         #get unique vlaues in the message and put them in a list
         self.values=list(set(self.message))#list of unique bytes
         #x=bytearray(fcontents)
-        print(len(self.values))
+#        print(len(self.values))
         i=0;
         while i<len(self.values):
-            print(self.values[i])
+#            print(self.values[i])
             i+=1
             
         self.symbols=[]# list of symbols objects  # {} for dict (map) and [] for list (array)
@@ -45,10 +45,13 @@ class Encoder:
 #            print(trash)
             arr = bytearray(rf.read()) 
             
-            print("old " + str(arr))
+#            print("old " + str(arr))
+#            print("old"+str(arr[0]))
+#            print("old"+str(arr[1]))
+#            print("old"+str(arr[2]))
             
             #convert letter into one byte
-            i=3
+            i=0
             while(i<len(arr)):
                  if(arr[i] & 0b10000000 == 0b0):
                      i += 1
@@ -66,8 +69,12 @@ class Encoder:
                  del arr[i+1]
                  i += 1     
                  
-            print("new " + str(arr))
+#            print("new " + str(arr))
+#            print("new " + str(arr[0]))
+#            print("new " + str(arr[1]))
+#            print("new " + str(arr[2]))
             return arr
+        
 #        with open (self.inputFile,'rb') as rf:
 #            fcontents= rf.read(3)
 #            fcontents= rf.read()
@@ -108,7 +115,7 @@ class Encoder:
         #self.symbols.append(symbol.Symbol(bytes('e'),1,1/len(self.message)))
         print('Add eof')
         e=ord('e')
-        print(e)
+#        print(e)
 #        e=b'e'
 #        print(b'e')
         self.message.append(e) # dummy value for eof char

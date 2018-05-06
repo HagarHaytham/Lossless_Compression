@@ -7,7 +7,7 @@ Created on Fri Apr 27 19:12:54 2018
 
 import encoder
 #import huffman
-#import decoder
+import decoder
 
 # from encoder import encoder as en
 #import sys
@@ -15,22 +15,26 @@ import encoder
 
 import os
 
-
-inputFile='files//DataSet_1.tsv'
-
-inputFile1='files//t2.tsv'
-encodedMessage='encoding//encoded_1.tsv'
-encodedMessage1='encoding//encoded_t2.tsv'
-codeTable='codetables//codetable_1.tsv'
-codeTable1='codetables//codetable_t2.tsv'
-decodedMessage='decoding//DataSet_1.tsv'
+inputFile='files//DataSet_20.tsv'
+encodedMessage='encoding//encoded_20.tsv'
+codeTable='codetables//codetable_20.tsv'
+decodedMessage='decoding//DataSet_20.tsv'
 
 encoder1=encoder.Encoder(inputFile)
 encoder1.Encode(codeTable,encodedMessage)
 
 #for knowing the size of a file
-x=os.stat(inputFile).st_size
-print(x)
+inf=os.stat(inputFile).st_size
+print(inf)
+ct=os.stat(codeTable).st_size
+print(ct)
+enf=os.stat(encodedMessage).st_size
+print(enf)
+
+compression_ratio=(inf/(ct+enf))
+print (compression_ratio)
+
+d=decoder.Decoder(codeTable,encodedMessage,decodedMessage)
 
 
 #Huffman1.printCodeTable(codeTable)

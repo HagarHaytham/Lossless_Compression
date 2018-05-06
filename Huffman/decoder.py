@@ -88,16 +88,8 @@ class Decoder:
         
     def DecodeUTF8(self):
         decint=[]
-        decint1=[]
-        i=0
-        while i<3:
-            decint1.append(self.Message[i])
-            i+=1
-#            b=bytes(decint1)
-#            x=b.decode('utf-8')
-        print(decint1)
         with io.open(self.decodedFile, 'w', encoding='utf-8', newline='\n') as fout:
-            i=3
+            i=0
             while i<len(self.Message):
                 if (self.Message[i]& 0b10000000 == 0):#keda dah ascii
                     decint.append(self.Message[i])
@@ -122,60 +114,9 @@ class Decoder:
                     decint.append(k)
             
                 i+=1
-        
-            #print(decint)
-            s = '111011111011101110111111'
-            y=int(s,2).to_bytes(len(s)//8,'big')
-            b1=bytes(decint1)
-            x1=b1.decode()
-            fout.write(x1)
-            
             b=bytes(decint)
             x=b.decode('utf-8')
             fout.write(x)
-    
-#        with open (self.decodedFile,'w') as wf:
-#            i=0
-#            x=bytearray()
-#            while i<len(self.Message):
-#                if (self.Message[i] & 0b1000000 == 0b0 ): #ascii fa aktbo zy ma howa
-#                    x.append(self.Message[i])
-##                    wf.write(self.Message[i].decode('ascii'))
-#                    wf.write(bytes(x))
-#    
-#                    
-#                else:
-#                    i+=1
-#                    continue
-#                i+=1
-#                
                 
-                
-                
-d=Decoder('codetables//codetable_1.tsv','encoding//encoded_1.tsv','decoding//DataSet_1.tsv')
-
-#my_var = d.map.get('101')
-#print(my_var)
-#t=int(my_var)
-#i=int(my_var,10).to_bytes(1,byteorder='big')
-#print(i)
-#print(type(i))
-#x=bytearray()
-#x.append(t)
-#print(x)
-
-
-
-
-#print(chr(i))
-#h=hex(i)
-#print(h)
-#print(type(h))
-
-
-#empty_bytes = bytes(4)
-#print(type(empty_bytes))
-#print(empty_bytes)
-
-#print(bytes(my_var))
+#d=Decoder('codetables//codetable_1.tsv','encoding//encoded_1.tsv','decoding//DataSet_1.tsv')
 
