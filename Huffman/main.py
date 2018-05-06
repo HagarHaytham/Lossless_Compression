@@ -13,16 +13,25 @@ import encoder
 #import sys
 #print (sys.path)
 
+import os
 
 
-inputFile='files//DataSet_5.tsv'
-#inputFile1='files//t2.tsv'
+inputFile='files//DataSet_1.tsv'
+
+inputFile1='files//t2.tsv'
 encodedMessage='encoding//encoded_5.tsv'
+encodedMessage1='encoding//encoded_t2.tsv'
 codeTable='codetables//codetable_5.tsv'
-decodedMessage='decoding//output_1.tsv'
+codeTable1='codetables//codetable_t2.tsv'
+decodedMessage='decoding//DataSet_4.tsv'
 
-encoder1=encoder.Encoder(inputFile)
-encoder1.Encode(codeTable,encodedMessage)
+encoder1=encoder.Encoder(inputFile1)
+encoder1.Encode(codeTable1,encodedMessage1)
+
+#for knowing the size of a file
+x=os.stat(inputFile).st_size
+print(x)
+
 
 #Huffman1.printCodeTable(codeTable)
 

@@ -38,7 +38,7 @@ class Huffman:
             #keep the two symbols in the left and the right of the new node
             node.left=l 
             node.right=r
-            #pudh the new node
+            #push the new node
             heapq.heappush(self.symbarr,node)
         printCodes(self.map,self.symbarr[0],"")
         
@@ -50,7 +50,7 @@ class Huffman:
                 wf.write( str(key)) #shofy hna hy7sl moshkela wla eh 
                 wf.write(' ')
                 wf.write(value)
-                wf.write('\n')
+                wf.write(' ')
             
                 
                 
@@ -59,7 +59,7 @@ class Huffman:
         with open (encodedMessage,'wb') as wf:
             enc=""
             for i in message:
-                #wf.write(self.map[i])
+#                wf.write(self.map[i])
                 enc+= self.map[i]
             print(len(enc))
             while (len(enc) % 8 != 0):

@@ -41,11 +41,14 @@ class Encoder:
         
         
         with open (self.inputFile,'rb') as rf:
+            trash=rf.read(3)
+            print(trash)
             arr = bytearray(rf.read()) 
+            
             print("old " + str(arr))
             
             #convert letter into one byte
-            i=3
+            i=0
             while(i<len(arr)):
                  if(arr[i] & 0b10000000 == 0b0):
                      i += 1
