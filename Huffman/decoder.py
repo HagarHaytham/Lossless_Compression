@@ -95,6 +95,7 @@ class Decoder:
             i+=1
 #            b=bytes(decint1)
 #            x=b.decode('utf-8')
+        print(decint1)
         with io.open(self.decodedFile, 'w', encoding='utf-8', newline='\n') as fout:
             i=3
             while i<len(self.Message):
@@ -123,9 +124,11 @@ class Decoder:
                 i+=1
         
             #print(decint)
-#            b1=bytes(decint1)
-#            x1=b1.decode()
-#            fout.write(x1)
+            s = '111011111011101110111111'
+            y=int(s,2).to_bytes(len(s)//8,'big')
+            b1=bytes(decint1)
+            x1=b1.decode()
+            fout.write(x1)
             
             b=bytes(decint)
             x=b.decode('utf-8')
