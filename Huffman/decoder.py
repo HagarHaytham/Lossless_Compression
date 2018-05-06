@@ -14,13 +14,14 @@ class Decoder:
         self.encodedFile=encodedFile
         self.decodedFile=decodedFile
         self.map={} #interpretted not compiled take care
+        print('Decoder Constructor')
         self.ReadCodeTable()
         self.stream=self.ReadFile()
 #        self.Message=bytearray()
         self.Message=[]
         self.DecodeHuffman()
         self.FinalMessage=bytearray()
-        self.DecodeUTF8()
+#        self.DecodeUTF8()
             
     def ReadCodeTable(self):
         s=""
@@ -84,13 +85,22 @@ class Decoder:
         print(self.Message)
         
     def DecodeUTF8(self):
-        i=0
-        while i<len(self.Message):
-            pass
+        with open (self.decodedFile,'w') as wf:
+            i=0
+            x=bytearray()
+            while i<len(self.Message):
+                if (self.Message[i] & 0b1000000 == 0b0 ): #ascii fa aktbo zy ma howa
+                    x.append(self.Message[i])
+#                    wf.write(self.Message[i].decode('ascii'))
+                    wf.write(bytes(x))
+    
+                    
+                else:
+                    i+=1
+                    continue
+                i+=1
                 
-            
-            
-        
+                
                 
                 
 d=Decoder('codetables//codetable_t2.tsv','encoding//encoded_t2.tsv','decoding//DataSet_t2.tsv')
