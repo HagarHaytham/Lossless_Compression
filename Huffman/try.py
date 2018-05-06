@@ -124,14 +124,66 @@
 #s="".join(map(chr,bytes))
 #print(s)
 
-with open ('habl.tsv','w') as wf:
-    #xef 239
-    #xbb 187
-    #xbf 191
-    bytes = [239,187,191,112,52,52,216,167]
-    bytes.append(112)
-    s="".join(map(chr,bytes))
-    print(s)    
-    wf.write(s)
+#with open ('habl.tsv','w','utf-8') as wf:
+import codecs
+import io
+#f = codecs.open("habl.tsv", "w", "utf-8")
+#    #xef 239
+#    #xbb 187
+#    #xbf 191
+##    bytes = [239,187,191,112,52,52,216,167]
+##    bytes.append(112)
+##    s="".join(map(chr,bytes))
+##    print(s)    
+##    wf.write(s)
+#bytes1 = [239,187,191,216,167,32,42]
+##    bytes.append(112)
+##    s="".join(map(chr,bytes))
+#s=bytes(bytes1)
+#print(s)    
+#x=s.decode('utf-8')
+##    x=str(s,encoding='utf-8')
+#print(x)
+#f.write(x)
+#with io.open('habl.tsv', 'w', encoding='utf-8', newline='\n') as fout:
+#    fout.write(x)
+#    
+#temp='01100110'
+#k=int(temp,2)
+#print(type(k))
+#print(k)
 
-
+integers =[199, 167, 172, 177, 32, 199, 202, 171, 197, 42] #self.Message
+decint=[]
+with io.open('habl.tsv', 'w', encoding='utf-8', newline='\n') as fout:
+    i=0
+    while i<len(integers):
+        if (integers[i]& 0b10000000 == 0):#keda dah ascii
+            decint.append(integers[i])
+        else:
+            print('No')
+            temp="1101100"#d
+            if (integers[i] & 0b01000000 ==0):
+                temp+="0"
+                print('8')
+            else:
+                temp+="1"
+                print('9')
+            k=int(temp,2) # convert it to int
+            decint.append(k)
+            temp="10"
+            for j in range (0,6):
+                if (integers[i] & 0b100000>>j)==0:
+                    temp+="0"
+                else:
+                    temp+="1"
+            k=int(temp,2)
+            decint.append(k)
+            
+        i+=1
+        
+    print(decint)
+    b=bytes(decint)
+    x=b.decode('utf-8')
+    fout.write(x)
+fout.close()

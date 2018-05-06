@@ -7,6 +7,7 @@ Created on Fri Apr 27 19:12:12 2018
 
 #import os
 #import bitarray
+import io
 
 class Decoder:
     def __init__(self,codeTable,encodedFile,decodedFile):
@@ -20,8 +21,8 @@ class Decoder:
 #        self.Message=bytearray()
         self.Message=[]
         self.DecodeHuffman()
-        self.FinalMessage=bytearray()
-#        self.DecodeUTF8()
+#        self.FinalMessage=bytearray()
+        self.DecodeUTF8()
             
     def ReadCodeTable(self):
         s=""
@@ -29,16 +30,16 @@ class Decoder:
             for line in f:
                 s+=line
         r=s.split(' ')
-        print(r)
-        print (len(r))
+#        print(r)
+#        print (len(r))
         i=0;
         while i<(len(r)-1):
             self.map[r[i+1]]=r[i]
             i+=2
-        print(len(self.map))
+#        print(len(self.map))
         
         n=list(self.map)
-        print(n)
+#        print(n)
 #        os.remove('codetables//c1.tsv')
             
         
@@ -50,7 +51,7 @@ class Decoder:
 #            trash= rf.read(3)
 #            print(trash)
             arr= bytearray(rf.read())
-            print(len(arr))
+#            print(len(arr))
             i=0
             bits=""
             while i<len(arr):
@@ -62,11 +63,12 @@ class Decoder:
                         bits+="1"
                 i+=1
                         
-            print (len(bits))
-            print(bits)
+#            print (len(bits))
+#            print(bits)
         return bits
     
     def DecodeHuffman(self):
+        print('Decode Huffman')
         i=0
 #        eof=True
         t=""
@@ -78,32 +80,76 @@ class Decoder:
             else:
                 if (self.map.get(t)=="101"):
                     break
-                print(self.map.get(t))
+                #print(self.map.get(t))
                 self.Message.append(int(self.map.get(t))) #message deh tb2a array 3adya wla byte array
                 t=""
                 i+=1
-        print(self.Message)
+        #print(self.Message)
         
     def DecodeUTF8(self):
-        with open (self.decodedFile,'w') as wf:
-            i=0
-            x=bytearray()
+        decint=[]
+        decint1=[]
+        i=0
+        while i<3:
+            decint1.append(self.Message[i])
+            i+=1
+#            b=bytes(decint1)
+#            x=b.decode('utf-8')
+        with io.open(self.decodedFile, 'w', encoding='utf-8', newline='\n') as fout:
+            i=3
             while i<len(self.Message):
-                if (self.Message[i] & 0b1000000 == 0b0 ): #ascii fa aktbo zy ma howa
-                    x.append(self.Message[i])
-#                    wf.write(self.Message[i].decode('ascii'))
-                    wf.write(bytes(x))
-    
-                    
+                if (self.Message[i]& 0b10000000 == 0):#keda dah ascii
+                    decint.append(self.Message[i])
                 else:
-                    i+=1
-                    continue
+                    #print('No')
+                    temp="1101100"#d
+                    if (self.Message[i] & 0b01000000 ==0):
+                        temp+="0"
+                        #print('8')
+                    else:
+                        temp+="1"
+                        #print('9')
+                    k=int(temp,2) # convert it to int
+                    decint.append(k)
+                    temp="10"
+                    for j in range (0,6):
+                        if (self.Message[i] & 0b100000>>j)==0:
+                            temp+="0"
+                        else:
+                            temp+="1"
+                    k=int(temp,2)
+                    decint.append(k)
+            
                 i+=1
+        
+            #print(decint)
+#            b1=bytes(decint1)
+#            x1=b1.decode()
+#            fout.write(x1)
+            
+            b=bytes(decint)
+            x=b.decode('utf-8')
+            fout.write(x)
+    
+#        with open (self.decodedFile,'w') as wf:
+#            i=0
+#            x=bytearray()
+#            while i<len(self.Message):
+#                if (self.Message[i] & 0b1000000 == 0b0 ): #ascii fa aktbo zy ma howa
+#                    x.append(self.Message[i])
+##                    wf.write(self.Message[i].decode('ascii'))
+#                    wf.write(bytes(x))
+#    
+#                    
+#                else:
+#                    i+=1
+#                    continue
+#                i+=1
+#                
                 
                 
                 
-                
-d=Decoder('codetables//codetable_t2.tsv','encoding//encoded_t2.tsv','decoding//DataSet_t2.tsv')
+d=Decoder('codetables//codetable_1.tsv','encoding//encoded_1.tsv','decoding//DataSet_1.tsv')
 
 #my_var = d.map.get('101')
 #print(my_var)
