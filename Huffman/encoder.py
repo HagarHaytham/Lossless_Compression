@@ -40,55 +40,45 @@ class Encoder:
         print('Encoder readfile')
         
         
-        with open (self.inputFile,'rb') as rf:
-#            trash=rf.read(3)
-#            print(trash)
-            arr = bytearray(rf.read()) 
-            
-#            print("old " + str(arr))
-#            print("old"+str(arr[0]))
-#            print("old"+str(arr[1]))
-#            print("old"+str(arr[2]))
-            
-            #convert letter into one byte
-            i=0
-            while(i<len(arr)):
-                 if(arr[i] & 0b10000000 == 0b0):
-                     i += 1
-                     continue
-                 
-                 temp = "1"
-                 temp += str(arr[i] & 0b1)
-                 for j in range (0,6): #check
-                     if((arr[i+1] & 0b100000>>j) == 0):
-                         temp += "0"
-                     else:
-                         temp += "1"
-                         
-                 arr[i] = int(temp,2) #convert into binary
-                 del arr[i+1]
-                 i += 1     
-                 
-#            print("new " + str(arr))
-#            print("new " + str(arr[0]))
-#            print("new " + str(arr[1]))
-#            print("new " + str(arr[2]))
-            return arr
-        
 #        with open (self.inputFile,'rb') as rf:
+##            trash=rf.read(3)
+##            print(trash)
+#            arr = bytearray(rf.read()) 
+#            
+#            #convert letter into one byte
+#            i=0
+#            while(i<len(arr)):
+#                 if(arr[i] & 0b10000000 == 0b0):
+#                     i += 1
+#                     continue
+#                 
+#                 temp = "1"
+#                 temp += str(arr[i] & 0b1)
+#                 for j in range (0,6): #check
+#                     if((arr[i+1] & 0b100000>>j) == 0):
+#                         temp += "0"
+#                     else:
+#                         temp += "1"
+#                         
+#                 arr[i] = int(temp,2) #convert into binary
+#                 del arr[i+1]
+#                 i += 1     
+#            return arr
+        
+        with open (self.inputFile,'rb') as rf:
 #            fcontents= rf.read(3)
-#            fcontents= rf.read()
-#            #fcontents=binascii.hexlify( rf.read())
-#            #fre=binascii.unhexlify(fcontents);
+            fcontents= rf.read()
+            #fcontents=binascii.hexlify( rf.read())
+            #fre=binascii.unhexlify(fcontents);
 #            print(fcontents)
-#            #print(fre)
-##            x=bytearray(fcontents)
-##            i=0;
-##            while i<len(x):
-##                print(x[i])
+            #print(fre)
+#            x=bytearray(fcontents)
+#            i=0;
+#            while i<len(x):
+#                print(x[i])
 #            with open('habl.tsv','wb') as wf:
 #                wf.write(bytearray(fcontents))
-#            return bytearray(fcontents) 
+            return bytearray(fcontents) 
 
 
     
